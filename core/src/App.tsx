@@ -1,7 +1,8 @@
 import React from 'react';
 import {SampleForm} from "./components/SampleForm";
-import {Container, Header, Content, Footer} from 'rsuite';
-import {Input} from "./views/Input";
+import {Container, Content, Footer, Header} from 'rsuite';
+import {Input} from "./components/Input";
+
 
 function App() {
 

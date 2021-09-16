@@ -1,42 +1,40 @@
-import {InputLabelPosition, InputProps, InputType, Size} from "../views/Input";
 import {makeAutoObservable} from "mobx";
 import {SyntheticEvent} from "react";
+import {Customization, InputLabelPosition, InputProps, InputType, Primary, Size} from "../models/InputModel";
 
 export class InputStore implements InputProps {
 
     constructor(name: string) {
         //TODO validation for name?
         makeAutoObservable(this)
-        this.general.Name = name
+        this.primary.name = name
     }
 
-    general: {
-        Name: string;
-        Label: string;
-        Type: InputType;
-        "Label Position": InputLabelPosition;
-        Placeholder: string;
-        Size: Size;
-        Disabled: boolean;
-        Transparent: boolean;
-        Fluid: boolean;
-        ReadOnly: boolean
-    } = {
-        Name: "",
-        Label: "",
-        Type: InputType.Text,
-        "Label Position": InputLabelPosition.Default,
-        Placeholder: "",
-        Size: Size.Default,
-        Disabled: false,
-        Transparent: false,
-        Fluid: false,
-        ReadOnly: false,
+    primary: Primary = {
+        name: "",
+        label: "",
+        type: InputType.Text,
+        labelPosition: InputLabelPosition.Default,
+        placeholder: "",
+        size: Size.Default,
+        disabled: false,
+        transparent: false,
+        fluid: false,
+        readOnly: false,
         };
 
-    Value: string | number | readonly string[] = "";
+    value: string | number | readonly string[] = "";
     onChange(value: string | number | readonly string[], event: SyntheticEvent<Element, Event>): void {
-        this.Value = value;
+        this.value = value;
+        this.primary.label = value as string;
     }
+
+    customization: Customization = {
+        style: undefined,
+        className: "",
+        hidden: false,
+        hiddenInPrintMode: false,
+        adaptiveLayout: false,
+    };
 
 }

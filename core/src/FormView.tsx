@@ -4,16 +4,17 @@ import {observer} from "mobx-react";
 import {TextAreaStore} from "./stores/TextAreaStore";
 import {HeaderStore} from "./stores/HeaderStore";
 import {ButtonStore} from "./stores/ButtonStore";
+import {useEffect, useMemo} from "react";
 
 export interface FormViewProps {
     getForm: ((code: string) => any[])
 }
 
 export const FormView = observer((props: FormViewProps) => {
-    const store = new Store();
-    //store.fillFormModel("test", props.getForm);
-
-    store.model.push(new InputStore("asdasd")) //For testing
+    const store = useMemo(() => new Store(), []);
+    useEffect(() => {
+        store.fillFormModel("test", props.getForm);
+    }, []);
 
     var result = store.model.map(value => {
         //TODO rewrite initialization, remove getType step?

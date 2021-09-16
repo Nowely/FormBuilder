@@ -3,6 +3,7 @@ import React, {SyntheticEvent, useMemo} from "react";
 import {Design, InputLabelPosition, InputProps, InputType, Primary, Size} from "../models/InputModel";
 import {observer} from "mobx-react";
 import {InputView} from "../views/InputView";
+import AbstractStore from "./AbstractStore";
 
 export enum Control {
     Input,
@@ -11,22 +12,12 @@ export enum Control {
     TextArea,
 }
 
-export class InputStore implements InputProps {
-    constructor(key: string) {
-        //TODO validation for key?
-        makeAutoObservable(this)
-        this.key = key
-    }
+export class InputStore extends AbstractStore implements InputProps {
+    readonly controlType: string = Control[Control.Input]
 
-    key: string
-    readonly typeControl: string = Control[Control.Input]
-
-    //Вынести с абстрактный класс?
     getComponent = () => {
-        //TODO Здесь можем адаптивно подтягивать и подставлять вью
-        const ObservableInput = observer(InputView);
-        return <ObservableInput store={this}/>
-        //return Input.bind(this, this.key);
+        const ObservableComponent = observer(InputView);
+        return <ObservableComponent store={this}/>
     };
 
     value: string | number | readonly string[] = "";

@@ -1,1 +1,5 @@
-export {}
+export class HeaderStore {
+    getComponent = () => {
+        return null;
+    };
+}

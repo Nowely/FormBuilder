@@ -35,7 +35,6 @@ export class Action {
 }
 
 export type Primary = {
-    name: string
     label: string
     type: InputType
     labelPosition: InputLabelPosition
@@ -47,7 +46,7 @@ export type Primary = {
     readOnly: boolean
 }
 
-export type Customization = {
+export type Design = {
     style: CSSProperties | undefined
     className: string
     hidden: boolean
@@ -60,7 +59,7 @@ export interface InputProps {
     onChange: ((value: string | number | readonly string[], event: SyntheticEvent<Element, Event>) => void);
 
     primary: Primary
-    customization: Customization
+    design: Design
 
     /*events: {
         "onChange timeout": number

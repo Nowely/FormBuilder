@@ -6,6 +6,7 @@ import {HeaderStore} from "./stores/HeaderStore";
 import {ButtonStore} from "./stores/ButtonStore";
 import {useEffect, useMemo} from "react";
 import {DropdownStore} from "./stores/DropdownStore";
+import {Button} from "rsuite";
 
 export interface FormViewProps {
     getForm: ((code: string) => any[])
@@ -17,9 +18,15 @@ export const FormView = observer((props: FormViewProps) => {
         store.fillFormModel("test", props.getForm);
     }, []);
 
-    let result = store.model.map(value => value.getComponent());
+    let result = store.model.map(value => {
+
+        return value.getComponent();
+    });
 
     return <div>
+        <Button onClick={store.download}>Download</Button>
+        <Button onClick={store.upload}>Upload</Button>
+        <Button onClick={store.clear}>Clear</Button>
         {result}
     </div>;
 })

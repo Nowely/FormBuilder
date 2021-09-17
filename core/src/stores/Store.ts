@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {action, makeAutoObservable} from "mobx";
 import {InputStore} from "./InputStore";
 import {HeaderStore} from "./HeaderStore";
 import AbstractStore from "./AbstractStore";
@@ -9,19 +9,67 @@ import {TextAreaStore} from "./TextAreaStore";
 
 export class Store {
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this, {
+            download: action.bound,
+            upload: action.bound,
+            clear: action.bound,
+        })
     }
 
     //Interface with typeControl and key? instead any type. Or create abstract (base) ComponentStore
     model: AbstractStore[] = []
 
-    downloadModel() {
+    download() {
+        var data = "data:text/json;charset=utf-8," + encodeURIComponent(this.getModelSnapshot());
 
+        const link = document.createElement('a');
+        link.setAttribute('href', data);
+        link.setAttribute('download', "form.json");
+        document.body.appendChild(link);
+        link.onclick = () => {
+            document.body.removeChild(link);
+        };
+        link.click();
     }
 
-    uploadModel() {
+    upload() {
+        var input = document.createElement('input');
+        input.type = 'file';
 
+        input.onchange = e => {
+
+            const target= e.target as HTMLInputElement;
+            const file: File = (target.files as FileList)[0];
+
+            // setting up the reader
+            var reader = new FileReader();
+            reader.readAsText(file,'UTF-8');
+
+            // here we tell the reader what to do when it's done reading...
+            reader.onload = readerEvent => {
+                var content: string = readerEvent.target?.result as string ?? ""; // this is the content!
+
+                this.setModelSnapshot(content)
+            }
+
+        }
+
+        input.click();
     }
+
+    clear () {
+        this.model = [];
+    }
+
+    getModelSnapshot() {
+        return JSON.stringify(this.model, null, 2)
+    }
+
+    setModelSnapshot(jsonString: string) {
+        let json = JSON.parse(jsonString);
+        this.model = json.map(AbstractStore.castToStore)
+    }
+
 
     //TODO Test section
     fillFormModel(code: string, getForm: (code: string) => any[]) {

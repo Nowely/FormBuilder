@@ -10,6 +10,7 @@ export enum Control {
     Button,
     Header,
     TextArea,
+    Dropdown
 }
 
 export class InputStore extends AbstractStore implements InputProps {
@@ -33,7 +34,6 @@ export class InputStore extends AbstractStore implements InputProps {
     value: string | number | readonly string[] = "";
     onChange(value: string | number | readonly string[], event: SyntheticEvent<Element, Event>): void {
         this.value = value;
-        this.primary.label = value as string;
     }
 
     primary: Primary = {

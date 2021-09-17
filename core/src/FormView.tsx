@@ -5,6 +5,7 @@ import {TextAreaStore} from "./stores/TextAreaStore";
 import {HeaderStore} from "./stores/HeaderStore";
 import {ButtonStore} from "./stores/ButtonStore";
 import {useEffect, useMemo} from "react";
+import {DropdownStore} from "./stores/DropdownStore";
 
 export interface FormViewProps {
     getForm: ((code: string) => any[])
@@ -34,6 +35,8 @@ export const getType = (type: Control) => {
             return TextAreaStore;
         case Control.Input:
             return InputStore;
+        case Control.Dropdown:
+            return  DropdownStore;
         default:
             throw new Error(`Unknown type of control: ${type}!`)
     }

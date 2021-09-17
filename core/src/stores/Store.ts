@@ -4,6 +4,7 @@ import {HeaderStore} from "./HeaderStore";
 import AbstractStore from "./AbstractStore";
 import {ButtonStore} from "./ButtonStore";
 import {DropdownStore} from "./DropdownStore";
+import {TextAreaStore} from "./TextAreaStore";
 
 
 export class Store {
@@ -51,6 +52,10 @@ export class Store {
         type.design.block = true
         this.model.push(type)
 
+        let comment = new TextAreaStore("comment");
+        comment.primary.label = "Comment"
+        comment.primary.rows = 5
+        this.model.push(comment)
 
         let saveButton = new ButtonStore("save")
         saveButton.primary.content = "Save"

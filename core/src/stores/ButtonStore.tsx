@@ -1,7 +1,7 @@
 import AbstractStore from "./AbstractStore";
 import {ButtonProps, Primary} from "../models/ButtonModel";
 import {Control} from "./InputStore";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import React from "react";
 import {ButtonView} from "../views/ButtonView";
 import {makeObservable, observable} from "mobx";

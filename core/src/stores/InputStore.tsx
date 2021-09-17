@@ -1,7 +1,7 @@
 import {action, makeObservable, observable} from "mobx";
 import React, {SyntheticEvent, useMemo} from "react";
 import {Design, InputLabelPosition, InputProps, InputType, Primary, Size} from "../models/InputModel";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {InputView} from "../views/InputView";
 import AbstractStore from "./AbstractStore";
 

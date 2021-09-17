@@ -1,5 +1,5 @@
 import {HeaderProps, Primary} from "../models/HeaderModel";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import React from "react";
 import {HeaderView} from "../views/HeaderView";
 import AbstractStore from "./AbstractStore";

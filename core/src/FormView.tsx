@@ -1,6 +1,6 @@
 import {Store} from "./stores/Store";
 import {Control, InputStore} from "./stores/InputStore";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {TextAreaStore} from "./stores/TextAreaStore";
 import {HeaderStore} from "./stores/HeaderStore";
 import {ButtonStore} from "./stores/ButtonStore";

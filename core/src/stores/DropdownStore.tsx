@@ -1,6 +1,6 @@
 import {Control} from "./InputStore";
 import {makeObservable, observable} from "mobx";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import React from "react";
 import AbstractStore from "./AbstractStore";
 import {Design, DropdownProps, Primary} from "../models/DropdownModel";

@@ -2,7 +2,7 @@ import AbstractStore from "./AbstractStore";
 import {Primary, TextAreaProps} from "../models/TextAreaModel";
 import {Control} from "./InputStore";
 import {makeObservable, observable} from "mobx";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import React from "react";
 import {TextAreaView} from "../views/TextAreaView";
 

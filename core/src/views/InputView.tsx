@@ -11,7 +11,7 @@ export const InputView = ({store}: { store: InputProps }) => {
             <RInput
                 placeholder={store.primary.placeholder}
                 disabled={store.primary.disabled || store.primary.readOnly}
-                onChange={(value, event) => store.onChange(value, event)}
+                onChange={store.onChange}
                 value={store.value}
             />
         </div>

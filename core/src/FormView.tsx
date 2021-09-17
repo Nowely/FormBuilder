@@ -16,20 +16,15 @@ export const FormView = observer((props: FormViewProps) => {
         store.fillFormModel("test", props.getForm);
     }, []);
 
-    var result = store.model.map(value => {
-        //TODO rewrite initialization, remove getType step?
-        let type = getType(Control[value.typeControl as keyof typeof Control]);
-        if (value instanceof type){
-            return value.getComponent()
-        }
-    })
+    let result = store.model.map(value => value.getComponent());
 
     return <div>
         {result}
     </div>;
 })
 
-function getType(type: Control) {
+
+export const getType = (type: Control) => {
     switch (type) {
         case Control.Button:
             return ButtonStore
@@ -40,6 +35,6 @@ function getType(type: Control) {
         case Control.Input:
             return InputStore;
         default:
-            throw new Error("Unknown type of control!")
+            throw new Error(`Unknown type of control: ${type}!`)
     }
 }

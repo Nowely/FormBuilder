@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 import React, {SyntheticEvent, useMemo} from "react";
 import {Design, InputLabelPosition, InputProps, InputType, Primary, Size} from "../models/InputModel";
 import {observer} from "mobx-react";
@@ -15,7 +15,17 @@ export enum Control {
 export class InputStore extends AbstractStore implements InputProps {
     readonly controlType: string = Control[Control.Input]
 
-    getComponent = () => {
+    constructor(key: string) {
+        super(key);
+        makeObservable(this, {
+            value: observable,
+            onChange: action.bound,
+            primary: observable,
+            design: observable,
+        })
+    }
+
+    getObservableComponent = () => {
         const ObservableComponent = observer(InputView);
         return <ObservableComponent store={this}/>
     };

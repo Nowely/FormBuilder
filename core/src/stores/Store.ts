@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {InputStore} from "./InputStore";
 import {HeaderStore} from "./HeaderStore";
+import AbstractStore from "./AbstractStore";
 
 
 export class Store {
@@ -9,7 +10,7 @@ export class Store {
     }
 
     //Interface with typeControl and key? instead any type. Or create abstract (base) ComponentStore
-    model: any[] = []
+    model: AbstractStore[] = []
 
     downloadModel() {
 
@@ -24,6 +25,7 @@ export class Store {
         let header = new HeaderStore("header 1")
         header.primary.content = "Application Form"
         header.primary.subheader = "Make it easier"
+        this.model.push(header);
 
         let a = new InputStore("asdasd")
         this.model.push(a) //For testing

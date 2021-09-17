@@ -1,15 +1,28 @@
-import {makeAutoObservable} from "mobx";
+import {makeObservable, observable} from "mobx";
+import {Control} from "./InputStore";
+import {getType} from "../FormView";
 
 export default abstract class AbstractStore {
     key: string
     abstract readonly controlType: string
 
-    constructor(key: string) {
+    protected constructor(key: string) {
         //TODO validation for key?
-        makeAutoObservable(this)
         this.key = key
+        makeObservable(this, {
+            key: observable
+        })
     }
 
     //TODO универсальная реализация? Валидация?
-    abstract getComponent: () => JSX.Element
+    abstract getObservableComponent: () => JSX.Element
+
+    getComponent = (): JSX.Element | null => {
+        let type = getType(Control[this.controlType as keyof typeof Control]);
+
+        if (this instanceof type){
+            return this.getObservableComponent()
+        }
+        return null;
+    }
 }

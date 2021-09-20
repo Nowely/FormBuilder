@@ -10,7 +10,7 @@ function App() {
         <Container>
             <Header/>
             <Content style={{margin: '6%'}}>
-                <SampleForm/>
+                {/*<SampleForm/>*/}
 
                 <br/>
 

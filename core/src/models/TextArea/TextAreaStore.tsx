@@ -1,10 +1,11 @@
-import AbstractStore from "./AbstractStore";
-import {Primary, TextAreaProps} from "../models/TextAreaModel";
-import {Control} from "./InputStore";
+import AbstractStore from "../AbstractStore";
+import {Main} from "./TextAreaTypes";
+import {Control} from "../Input/InputStore";
 import {makeObservable, observable} from "mobx";
 import {observer} from "mobx-react-lite";
 import React from "react";
-import {TextAreaView} from "../views/TextAreaView";
+import {TextAreaView} from "../../views/TextAreaView";
+import {TextAreaProps} from "./ITextArea";
 
 export class TextAreaStore extends AbstractStore implements TextAreaProps{
     readonly controlType: string = Control[Control.TextArea];
@@ -12,7 +13,7 @@ export class TextAreaStore extends AbstractStore implements TextAreaProps{
     constructor(key: string) {
         super(key);
         makeObservable(this, {
-            primary: observable
+            main: observable
         })
     }
 
@@ -21,7 +22,7 @@ export class TextAreaStore extends AbstractStore implements TextAreaProps{
         return <ObservableComponent store={this}/>
     };
 
-    primary: Primary = {
+    main: Main = {
         label: "",
         placeholder: "",
         rows: 3

@@ -1,9 +1,10 @@
 import {action, makeObservable, observable} from "mobx";
 import React, {SyntheticEvent, useMemo} from "react";
-import {Design, InputLabelPosition, InputProps, InputType, Primary, Size} from "../models/InputModel";
+import {Design, InputLabelPosition, InputType, Main, Size} from "./InputTypes";
 import {observer} from "mobx-react-lite";
-import {InputView} from "../views/InputView";
-import AbstractStore from "./AbstractStore";
+import {InputView} from "../../views/InputView";
+import AbstractStore from "../AbstractStore";
+import {InputProps} from "./IInput";
 
 export enum Control {
     Input,
@@ -21,7 +22,7 @@ export class InputStore extends AbstractStore implements InputProps {
         makeObservable(this, {
             value: observable,
             onChange: action.bound,
-            primary: observable,
+            main: observable,
             design: observable,
         })
     }
@@ -36,7 +37,7 @@ export class InputStore extends AbstractStore implements InputProps {
         this.value = value;
     }
 
-    primary: Primary = {
+    main: Main = {
         label: "",
         type: InputType.Text,
         labelPosition: InputLabelPosition.Default,

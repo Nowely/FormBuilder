@@ -1,5 +1,5 @@
 import {action, makeObservable, observable} from "mobx";
-import {Control} from "./InputStore";
+import {Control} from "./Input/InputStore";
 import {getType} from "../FormView";
 import {ReactNode} from "react";
 
@@ -34,6 +34,7 @@ export default abstract class AbstractStore {
 
         let type = getType(Control[obj.controlType as keyof typeof Control]);
 
+        //TODO improve: new object without create empty object with key
         let store = new type("")
         Object.assign(store, obj);
         return store;

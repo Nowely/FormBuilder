@@ -1,10 +1,10 @@
 import {action, makeAutoObservable} from "mobx";
-import {InputStore} from "./InputStore";
-import {HeaderStore} from "./HeaderStore";
-import AbstractStore from "./AbstractStore";
-import {ButtonStore} from "./ButtonStore";
-import {DropdownStore} from "./DropdownStore";
-import {TextAreaStore} from "./TextAreaStore";
+import {InputStore} from "../models/Input/InputStore";
+import {HeaderStore} from "../models/Header/HeaderStore";
+import AbstractStore from "../models/AbstractStore";
+import {ButtonStore} from "../models/Button/ButtonStore";
+import {DropdownStore} from "../models/Dropdown/DropdownStore";
+import {TextAreaStore} from "../models/TextArea/TextAreaStore";
 
 
 export class Store {
@@ -75,25 +75,25 @@ export class Store {
     fillFormModel(code: string, getForm: (code: string) => any[]) {
         //this.model = getForm(code);
         let header = new HeaderStore("header 1")
-        header.primary.content = "Application Form"
-        header.primary.subheader = "Make it easier"
+        header.main.content = "Application Form"
+        header.main.subheader = "Make it easier"
         this.model.push(header);
 
         let title = new InputStore("title")
-        title.primary.label = "Title"
+        title.main.label = "Title"
         this.model.push(title)
 
         let firstName = new InputStore("first name")
-        firstName.primary.label = "First Name"
+        firstName.main.label = "First Name"
         this.model.push(firstName)
 
         let lastName = new InputStore("last name")
-        lastName.primary.label = "Last Name"
+        lastName.main.label = "Last Name"
         this.model.push(lastName)
 
         let type = new DropdownStore("type")
-        type.primary.label = "Type"
-        type.primary.data.push(
+        type.main.label = "Type"
+        type.main.data.push(
             {label: "Internal", value: "Internal"},
             {label: "External", value: "External"},
             {label: "Direct", value: "Direct"})
@@ -101,17 +101,17 @@ export class Store {
         this.model.push(type)
 
         let comment = new TextAreaStore("comment");
-        comment.primary.label = "Comment"
-        comment.primary.rows = 5
+        comment.main.label = "Comment"
+        comment.main.rows = 5
         this.model.push(comment)
 
         let saveButton = new ButtonStore("save")
-        saveButton.primary.content = "Save"
-        saveButton.primary.appearance = "primary"
+        saveButton.main.content = "Save"
+        saveButton.main.appearance = "primary"
         this.model.push(saveButton);
 
         let cancelButton = new ButtonStore("cancel")
-        cancelButton.primary.content = "Cancel"
+        cancelButton.main.content = "Cancel"
         this.model.push(cancelButton);
 
     }

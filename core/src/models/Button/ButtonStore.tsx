@@ -1,18 +1,19 @@
-import AbstractStore from "./AbstractStore";
-import {ButtonProps, Primary} from "../models/ButtonModel";
-import {Control} from "./InputStore";
+import AbstractStore from "../AbstractStore";
+import {Main} from "./ButtonTypes";
+import {Control} from "../Input/InputStore";
 import {observer} from "mobx-react-lite";
 import React from "react";
-import {ButtonView} from "../views/ButtonView";
+import {ButtonView} from "../../views/ButtonView";
 import {makeObservable, observable} from "mobx";
+import {IButton} from "./IButton";
 
-export class ButtonStore extends AbstractStore implements ButtonProps{
+export class ButtonStore extends AbstractStore implements IButton{
     readonly controlType: string = Control[Control.Button];
 
     constructor(key: string) {
         super(key);
         makeObservable(this, {
-            primary: observable
+            main: observable
         })
     }
 
@@ -21,7 +22,7 @@ export class ButtonStore extends AbstractStore implements ButtonProps{
         return <ObservableComponent store={this}/>
     };
 
-    primary: Primary = {
+    main: Main = {
         appearance: "default",
         content: ""
 

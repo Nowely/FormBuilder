@@ -1,11 +1,11 @@
 import {Store} from "./stores/Store";
-import {Control, InputStore} from "./stores/InputStore";
+import {Control, InputStore} from "./models/Input/InputStore";
 import {observer} from "mobx-react-lite";
-import {TextAreaStore} from "./stores/TextAreaStore";
-import {HeaderStore} from "./stores/HeaderStore";
-import {ButtonStore} from "./stores/ButtonStore";
+import {TextAreaStore} from "./models/TextArea/TextAreaStore";
+import {HeaderStore} from "./models/Header/HeaderStore";
+import {ButtonStore} from "./models/Button/ButtonStore";
 import {useEffect, useMemo} from "react";
-import {DropdownStore} from "./stores/DropdownStore";
+import {DropdownStore} from "./models/Dropdown/DropdownStore";
 import {Button} from "rsuite";
 
 export interface FormViewProps {

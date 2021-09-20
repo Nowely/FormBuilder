@@ -1,12 +1,12 @@
-import {DropdownProps} from "../models/DropdownModel";
 import {Form, InputPicker} from "rsuite";
+import {IDropdown} from "../models/Dropdown/IDropdown";
 
-export const DropdownView = ({store} : { store: DropdownProps }) => {
+export const DropdownView = ({store} : { store: IDropdown }) => {
 
     return (
         <div>
-            <Form.ControlLabel>{store.primary.label}</Form.ControlLabel>
-            <InputPicker {...store.design} data={store.primary.data} placeholder={store.primary.placeholder}/>
+            <Form.ControlLabel>{store.main.label}</Form.ControlLabel>
+            <InputPicker {...store.design} data={store.main.data} placeholder={store.main.placeholder}/>
         </div>
     )
 }

@@ -1,10 +1,11 @@
-import {HeaderProps, Primary} from "../models/HeaderModel";
+import {Main} from "./HeaderTypes";
 import {observer} from "mobx-react-lite";
 import React from "react";
-import {HeaderView} from "../views/HeaderView";
-import AbstractStore from "./AbstractStore";
-import {Control} from "./InputStore";
+import {HeaderView} from "../../views/HeaderView";
+import AbstractStore from "../AbstractStore";
+import {Control} from "../Input/InputStore";
 import {action, makeObservable, observable} from "mobx";
+import {HeaderProps} from "./IHeader";
 
 export class HeaderStore extends AbstractStore implements HeaderProps{
     readonly controlType: string = Control[Control.Header];
@@ -12,7 +13,7 @@ export class HeaderStore extends AbstractStore implements HeaderProps{
     constructor(key: string) {
         super(key);
         makeObservable(this, {
-            primary: observable,
+            main: observable,
         })
     }
 
@@ -21,7 +22,7 @@ export class HeaderStore extends AbstractStore implements HeaderProps{
         return <ObservableComponent store={this}/>
     };
 
-    primary: Primary = {
+    main: Main = {
         content: "",
         subheader: ""
     };

@@ -1,5 +1,4 @@
-import {CSSProperties, SyntheticEvent} from "react";
-import {types} from "util";
+import {CSSProperties} from "react";
 
 export enum InputType {
     Text,
@@ -34,7 +33,7 @@ export class Action {
     targets: string[] = []
 }
 
-export type Primary = {
+export type Main = {
     label: string
     type: InputType
     labelPosition: InputLabelPosition
@@ -54,20 +53,3 @@ export type Design = {
     adaptiveLayout: boolean
 }
 
-export interface InputProps {
-    value: string | number | readonly string[];
-    onChange: ((value: string | number | readonly string[], event: SyntheticEvent<Element, Event>) => void);
-
-    primary: Primary
-    design: Design
-
-    /*events: {
-        "onChange timeout": number
-        onChange: Action
-    }
-    tooltip: {}
-    other: {
-        Required: boolean
-    }*/
-
-}

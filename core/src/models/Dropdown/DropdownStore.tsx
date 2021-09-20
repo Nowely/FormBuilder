@@ -1,18 +1,19 @@
-import {Control} from "./InputStore";
+import {Control} from "../Input/InputStore";
 import {makeObservable, observable} from "mobx";
 import {observer} from "mobx-react-lite";
 import React from "react";
-import AbstractStore from "./AbstractStore";
-import {Design, DropdownProps, Primary} from "../models/DropdownModel";
-import {DropdownView} from "../views/DropdownView";
+import AbstractStore from "../AbstractStore";
+import {Design, Main} from "./DropdownTypes";
+import {DropdownView} from "../../views/DropdownView";
+import {IDropdown} from "./IDropdown";
 
-export class DropdownStore extends AbstractStore implements  DropdownProps{
+export class DropdownStore extends AbstractStore implements  IDropdown{
     readonly controlType: string = Control[Control.Dropdown];
 
     constructor(key: string) {
         super(key);
         makeObservable(this, {
-            primary: observable,
+            main: observable,
             design: observable,
         })
     }
@@ -22,7 +23,7 @@ export class DropdownStore extends AbstractStore implements  DropdownProps{
         return <ObservableComponent store={this}/>
     };
 
-    primary: Primary = {
+    main: Main = {
         label: "",
         data: [],
         placeholder: ""

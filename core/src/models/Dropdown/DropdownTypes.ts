@@ -1,6 +1,6 @@
 import {CSSProperties} from "react";
 
-export type Primary = {
+export type Main = {
     label: string,
     data: { label: string, value: string }[]
     placeholder: string
@@ -12,7 +12,3 @@ export type Design = {
     block: boolean
 }
 
-export interface DropdownProps {
-    primary: Primary
-    design: Design
-}

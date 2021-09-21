@@ -5,10 +5,10 @@ import React from "react";
 import {ButtonView} from "../../views/ButtonView";
 import {makeObservable, observable} from "mobx";
 import {IButton} from "./IButton";
-import {Control, ModelType} from "../../utils/constants";
+import {ControlString, ModelType} from "../../utils/constants";
 
 export class ButtonStore extends AbstractStore implements IButton{
-    readonly controlType: string = Control[Control.Button];
+    readonly controlType: ControlString = "Button";
 
     constructor(key: string) {
         super(key);

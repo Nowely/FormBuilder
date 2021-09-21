@@ -5,10 +5,10 @@ import AbstractStore from "../AbstractStore";
 import {Design, Main} from "./DropdownTypes";
 import {DropdownView} from "../../views/DropdownView";
 import {IDropdown} from "./IDropdown";
-import {Control, ModelType} from "../../utils/constants";
+import {ControlString, ModelType} from "../../utils/constants";
 
 export class DropdownStore extends AbstractStore implements  IDropdown{
-    readonly controlType: string = Control[Control.Dropdown];
+    readonly controlType: ControlString = "Dropdown";
 
     constructor(key: string) {
         super(key);

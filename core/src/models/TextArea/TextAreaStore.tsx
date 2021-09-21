@@ -5,10 +5,10 @@ import {observer} from "mobx-react-lite";
 import React from "react";
 import {TextAreaView} from "../../views/TextAreaView";
 import {TextAreaProps} from "./ITextArea";
-import {Control, ModelType} from "../../utils/constants";
+import {ControlString, ModelType} from "../../utils/constants";
 
 export class TextAreaStore extends AbstractStore implements TextAreaProps{
-    readonly controlType: string = Control[Control.TextArea];
+    readonly controlType: ControlString = "TextArea";
 
     constructor(key: string) {
         super(key);

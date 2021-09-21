@@ -1,10 +1,10 @@
 import {action, makeObservable, observable} from "mobx";
 import {ReactNode} from "react";
-import {Control, ModelType} from "../utils/constants";
+import {Control, ControlString, ModelType} from "../utils/constants";
 
 export default abstract class AbstractStore {
     key: string
-    abstract readonly controlType: string
+    abstract readonly controlType: ControlString
 
     protected constructor(key: string) {
         //TODO validation for key?

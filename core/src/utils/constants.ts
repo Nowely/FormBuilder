@@ -8,6 +8,9 @@ export enum Control {
     Dropdown
 }
 
+export type ControlString = keyof typeof Control
+
+
 export type TypeToClass = {
     -readonly [key in keyof typeof Control]: (new (key: string) => AbstractStore) | null
 };

@@ -17,17 +17,4 @@ export default abstract class AbstractModel {
 
     //TODO универсальная реализация? Валидация?
     abstract getComponent: () => ReactNode
-
-    static castToStore = (obj: any) => {
-        if (!obj.controlType)
-            throw new Error("Don't find type of control!")
-
-        let modelType = store.ModelType[obj.controlType];
-        if (modelType == null) return;
-
-        //TODO improve: new object without create empty object with key
-        let model = new modelType("")
-        Object.assign(model, obj);
-        return model;
-    }
 }

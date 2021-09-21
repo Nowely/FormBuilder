@@ -6,6 +6,7 @@ import {Button} from "../models/Button/Button";
 import {Dropdown} from "../models/Dropdown/Dropdown";
 import {TextArea} from "../models/TextArea/TextArea";
 import {TypeToClass} from "../utils/constants";
+import toModel from "../utils/toModel";
 
 
 class Store {
@@ -77,7 +78,7 @@ class Store {
 
     setModelSnapshot(jsonString: string) {
         let json = JSON.parse(jsonString);
-        this.model = json.map(AbstractModel.castToStore)
+        this.model = json.map(toModel)
     }
 
 

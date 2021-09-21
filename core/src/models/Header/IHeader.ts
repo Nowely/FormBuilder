@@ -1,5 +1,5 @@
 import {Main} from "./HeaderTypes";
 
-export interface HeaderProps {
+export interface IHeader {
     main: Main
 }

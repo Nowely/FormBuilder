@@ -1,7 +1,7 @@
 import {SyntheticEvent} from "react";
 import {Design, Main} from "./InputTypes";
 
-export interface InputProps {
+export interface IInput {
     value: string | number | readonly string[];
     onChange: ((value: string | number | readonly string[], event: SyntheticEvent<Element, Event>) => void);
 

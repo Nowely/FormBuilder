@@ -1,8 +1,8 @@
 import {Form, Input as RInput} from "rsuite";
-import {InputProps} from "../models/Input/IInput";
+import {IInput} from "../models/Input/IInput";
 
 
-export const InputView = ({store}: { store: InputProps }) => {
+export const InputView = ({store}: { store: IInput }) => {
 
     return (
         <div style={store.design.style} className={store.design.className}>

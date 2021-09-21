@@ -1,5 +1,5 @@
 import {Main} from "./TextAreaTypes";
 
-export interface TextAreaProps {
+export interface ITextArea {
     main: Main
 }

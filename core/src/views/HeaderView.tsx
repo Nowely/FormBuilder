@@ -1,6 +1,6 @@
-import {HeaderProps} from "../models/Header/IHeader";
+import {IHeader} from "../models/Header/IHeader";
 
-export const HeaderView = ({store} : { store: HeaderProps }) => {
+export const HeaderView = ({store} : { store: IHeader }) => {
 
     return (
         <div style={{textAlign: 'center'}}>

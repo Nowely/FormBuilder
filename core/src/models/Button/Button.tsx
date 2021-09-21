@@ -18,7 +18,7 @@ export class ButtonStore extends AbstractStore implements IButton{
         })
     }
 
-    getObservableComponent = () => {
+    getComponent = () => {
         const ObservableComponent = observer(ButtonView);
         return <ObservableComponent store={this}/>
     };

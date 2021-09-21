@@ -18,7 +18,7 @@ export class HeaderStore extends AbstractStore implements HeaderProps{
         })
     }
 
-    getObservableComponent = () => {
+    getComponent = () => {
         const ObservableComponent = observer(HeaderView);
         return <ObservableComponent store={this}/>
     };

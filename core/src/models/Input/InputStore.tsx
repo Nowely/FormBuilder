@@ -21,7 +21,7 @@ export class InputStore extends AbstractStore implements InputProps {
         })
     }
 
-    getObservableComponent = () => {
+    getComponent = () => {
         const ObservableComponent = observer(InputView);
         return <ObservableComponent store={this}/>
     };

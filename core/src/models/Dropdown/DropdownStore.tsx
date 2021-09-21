@@ -19,7 +19,7 @@ export class DropdownStore extends AbstractStore implements  IDropdown{
         })
     }
 
-    getObservableComponent = () => {
+    getComponent = () => {
         const ObservableComponent = observer(DropdownView);
         return <ObservableComponent store={this}/>
     };

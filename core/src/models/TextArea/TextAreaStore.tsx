@@ -18,7 +18,7 @@ export class TextAreaStore extends AbstractStore implements TextAreaProps{
         })
     }
 
-    getObservableComponent = () => {
+    getComponent = () => {
         const ObservableComponent = observer(TextAreaView);
         return <ObservableComponent store={this}/>
     };

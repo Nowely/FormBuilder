@@ -1,6 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 import {ReactNode} from "react";
-import {Control, ControlString, ModelType} from "../utils/constants";
+import {ControlString, ModelType} from "../utils/constants";
 
 export default abstract class AbstractStore {
     key: string
@@ -11,17 +11,11 @@ export default abstract class AbstractStore {
         this.key = key
         makeObservable(this, {
             key: observable,
-            getComponent: action,
         })
     }
 
     //TODO универсальная реализация? Валидация?
-    abstract getObservableComponent: () => ReactNode
-
-    getComponent = (): ReactNode => {
-        //let type = getType(Control[this.controlType as keyof typeof Control]);
-        return this.getObservableComponent()
-    };
+    abstract getComponent: () => ReactNode
 
     static castToStore = (obj: any) => {
         if (!obj.controlType)

@@ -5,7 +5,7 @@ import {store} from "../stores/Store";
 
 export default abstract class AbstractModel {
     key: string
-    abstract readonly controlType: ControlString
+    abstract readonly type: ControlString
 
     protected constructor(key: string) {
         //TODO validation for key?

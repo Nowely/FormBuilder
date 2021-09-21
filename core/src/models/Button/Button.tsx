@@ -8,7 +8,7 @@ import {IButton} from "./IButton";
 import {ControlString} from "../../utils/constants";
 
 export class Button extends AbstractModel implements IButton{
-    readonly controlType: ControlString = "Button";
+    readonly type: ControlString = "Button";
 
     constructor(key: string) {
         super(key);

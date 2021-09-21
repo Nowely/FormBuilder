@@ -8,7 +8,7 @@ import {ITextArea} from "./ITextArea";
 import {ControlString} from "../../utils/constants";
 
 export class TextArea extends AbstractModel implements ITextArea{
-    readonly controlType: ControlString = "TextArea";
+    readonly type: ControlString = "TextArea";
 
     constructor(key: string) {
         super(key);

@@ -8,7 +8,7 @@ import {IDropdown} from "./IDropdown";
 import {ControlString} from "../../utils/constants";
 
 export class Dropdown extends AbstractModel implements  IDropdown{
-    readonly controlType: ControlString = "Dropdown";
+    readonly type: ControlString = "Dropdown";
 
     constructor(key: string) {
         super(key);

@@ -8,7 +8,7 @@ import {IInput} from "./IInput";
 import {ControlString} from "../../utils/constants";
 
 export class Input extends AbstractModel implements IInput {
-    readonly controlType: ControlString = "Input"
+    readonly type: ControlString = "Input"
 
     constructor(key: string) {
         super(key);

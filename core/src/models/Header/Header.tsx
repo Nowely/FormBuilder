@@ -8,7 +8,7 @@ import {IHeader} from "./IHeader";
 import {ControlString} from "../../utils/constants";
 
 export class Header extends AbstractModel implements IHeader{
-    readonly controlType: ControlString = "Header";
+    readonly type: ControlString = "Header";
 
     constructor(key: string) {
         super(key);

@@ -5,14 +5,13 @@ import {HeaderView} from "../../views/HeaderView";
 import AbstractStore from "../AbstractStore";
 import {makeObservable, observable} from "mobx";
 import {HeaderProps} from "./IHeader";
-import {ControlString, ModelType} from "../../utils/constants";
+import {ControlString} from "../../utils/constants";
 
 export class HeaderStore extends AbstractStore implements HeaderProps{
     readonly controlType: ControlString = "Header";
 
     constructor(key: string) {
         super(key);
-        ModelType.Header = ModelType.Header ?? HeaderStore;
         makeObservable(this, {
             main: observable,
         })

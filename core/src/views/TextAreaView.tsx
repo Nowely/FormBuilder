@@ -1,5 +1,4 @@
 import {Form, Input} from "rsuite";
-import {forwardRef} from "react";
 import {TextAreaProps} from "../models/TextArea/ITextArea";
 
 export const TextAreaView = ({store} : {store: TextAreaProps}) => {

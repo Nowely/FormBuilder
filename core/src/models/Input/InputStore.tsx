@@ -5,14 +5,13 @@ import {observer} from "mobx-react-lite";
 import {InputView} from "../../views/InputView";
 import AbstractStore from "../AbstractStore";
 import {InputProps} from "./IInput";
-import {ControlString, ModelType} from "../../utils/constants";
+import {ControlString} from "../../utils/constants";
 
 export class InputStore extends AbstractStore implements InputProps {
     readonly controlType: ControlString = "Input"
 
     constructor(key: string) {
         super(key);
-        ModelType.Input = ModelType.Input ?? InputStore;
         makeObservable(this, {
             value: observable,
             onChange: action.bound,

@@ -1,23 +1,33 @@
-import {action, makeAutoObservable} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 import {InputStore} from "../models/Input/InputStore";
 import {HeaderStore} from "../models/Header/Header";
 import AbstractStore from "../models/AbstractStore";
 import {ButtonStore} from "../models/Button/Button";
 import {DropdownStore} from "../models/Dropdown/DropdownStore";
 import {TextAreaStore} from "../models/TextArea/TextAreaStore";
+import {TypeToClass} from "../utils/constants";
 
 
-export class Store {
+class Store {
+    readonly ModelType: TypeToClass = {
+        Input: InputStore,
+        Button: ButtonStore,
+        Header: HeaderStore,
+        TextArea: TextAreaStore,
+        Dropdown: DropdownStore
+    }
+
+    model: AbstractStore[] = []
+
     constructor() {
-        makeAutoObservable(this, {
+        makeObservable(this, {
+            model: observable,
             download: action.bound,
             upload: action.bound,
             clear: action.bound,
+            fillFormModel: action.bound,
         })
     }
-
-    //Interface with typeControl and key? instead any type. Or create abstract (base) ComponentStore
-    model: AbstractStore[] = []
 
     download() {
         var data = "data:text/json;charset=utf-8," + encodeURIComponent(this.getModelSnapshot());
@@ -116,3 +126,5 @@ export class Store {
 
     }
 }
+
+export const store = new Store()

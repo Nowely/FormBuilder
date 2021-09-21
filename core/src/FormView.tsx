@@ -1,6 +1,6 @@
-import {Store} from "./stores/Store";
+import {store} from "./stores/Store";
 import {observer} from "mobx-react-lite";
-import {useEffect, useMemo} from "react";
+import {useEffect} from "react";
 import {Button} from "rsuite";
 import AbstractStore from "./models/AbstractStore";
 
@@ -9,7 +9,6 @@ export interface FormViewProps {
 }
 
 export const FormView = observer((props: FormViewProps) => {
-    const store = useMemo(() => new Store(), []);
     useEffect(() => {
         store.fillFormModel("test", props.getForm);
     }, []);

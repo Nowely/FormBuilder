@@ -1,6 +1,7 @@
-import {action, makeObservable, observable} from "mobx";
+import {makeObservable, observable} from "mobx";
 import {ReactNode} from "react";
-import {ControlString, ModelType} from "../utils/constants";
+import {ControlString} from "../utils/constants";
+import {store} from "../stores/Store";
 
 export default abstract class AbstractStore {
     key: string
@@ -21,7 +22,7 @@ export default abstract class AbstractStore {
         if (!obj.controlType)
             throw new Error("Don't find type of control!")
 
-        let modelType = ModelType[obj.controlType];
+        let modelType = store.ModelType[obj.controlType];
         if (modelType == null) return;
 
         //TODO improve: new object without create empty object with key

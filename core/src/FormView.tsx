@@ -14,8 +14,8 @@ export const FormView = observer((props: FormViewProps) => {
     }, []);
 
     let result = store.model.map(value => {
-
-        return value.getComponent();
+        const Component = (props: {}) => <>{value.getComponent()}</>
+        return <Component key={value.key}/>
     });
 
     return <div>

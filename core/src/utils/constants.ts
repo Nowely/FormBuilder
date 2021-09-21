@@ -5,7 +5,7 @@ export enum Control {
     Button,
     Header,
     TextArea,
-    Dropdown
+    Dropdown,
 }
 
 /**

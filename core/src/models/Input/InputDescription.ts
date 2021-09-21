@@ -19,5 +19,5 @@ export const InputDescription: AllPropsDescriptionOf<IInput> = {
     design: null,
     main: null,
     onChange: null,
-    value: null,
+    value: null
 }

@@ -1,15 +1,11 @@
 import {Store} from "./stores/Store";
-import {Control, InputStore} from "./models/Input/InputStore";
 import {observer} from "mobx-react-lite";
-import {TextAreaStore} from "./models/TextArea/TextAreaStore";
-import {HeaderStore} from "./models/Header/HeaderStore";
-import {ButtonStore} from "./models/Button/ButtonStore";
 import {useEffect, useMemo} from "react";
-import {DropdownStore} from "./models/Dropdown/DropdownStore";
 import {Button} from "rsuite";
+import AbstractStore from "./models/AbstractStore";
 
 export interface FormViewProps {
-    getForm: ((code: string) => any[])
+    getForm: ((code: string) => AbstractStore[])
 }
 
 export const FormView = observer((props: FormViewProps) => {
@@ -30,21 +26,3 @@ export const FormView = observer((props: FormViewProps) => {
         {result}
     </div>;
 })
-
-
-export const getType = (type: Control) => {
-    switch (type) {
-        case Control.Button:
-            return ButtonStore
-        case Control.Header:
-            return HeaderStore
-        case Control.TextArea:
-            return TextAreaStore;
-        case Control.Input:
-            return InputStore;
-        case Control.Dropdown:
-            return  DropdownStore;
-        default:
-            throw new Error(`Unknown type of control: ${type}!`)
-    }
-}

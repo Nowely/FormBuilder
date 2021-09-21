@@ -1,5 +1,4 @@
 import React from 'react';
-import {SampleForm} from "./components/SampleForm";
 import {Container, Content, Footer, Header} from 'rsuite';
 import {FormView} from "./FormView";
 
@@ -14,7 +13,7 @@ function App() {
 
                 <br/>
 
-                <FormView getForm={f}/>
+                <FormView getForm={()=> []}/>
             </Content>
             <Footer/>
         </Container>
@@ -22,8 +21,3 @@ function App() {
 }
 
 export default App;
-
-function f(code: string): any[] {
-
-    return []
-}

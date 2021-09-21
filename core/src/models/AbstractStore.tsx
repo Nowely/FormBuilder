@@ -1,7 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
-import {Control} from "./Input/InputStore";
-import {getType} from "../FormView";
 import {ReactNode} from "react";
+import {Control, ModelType} from "../utils/constants";
 
 export default abstract class AbstractStore {
     key: string
@@ -20,23 +19,20 @@ export default abstract class AbstractStore {
     abstract getObservableComponent: () => ReactNode
 
     getComponent = (): ReactNode => {
-        let type = getType(Control[this.controlType as keyof typeof Control]);
-
-        if (this instanceof type){
-            return this.getObservableComponent()
-        }
-        return null;
-    }
+        //let type = getType(Control[this.controlType as keyof typeof Control]);
+        return this.getObservableComponent()
+    };
 
     static castToStore = (obj: any) => {
         if (!obj.controlType)
             throw new Error("Don't find type of control!")
 
-        let type = getType(Control[obj.controlType as keyof typeof Control]);
+        let modelType = ModelType[obj.controlType];
+        if (modelType == null) return;
 
         //TODO improve: new object without create empty object with key
-        let store = new type("")
-        Object.assign(store, obj);
-        return store;
+        let model = new modelType("")
+        Object.assign(model, obj);
+        return model;
     }
 }

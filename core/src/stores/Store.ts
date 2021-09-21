@@ -1,8 +1,8 @@
 import {action, makeAutoObservable} from "mobx";
 import {InputStore} from "../models/Input/InputStore";
-import {HeaderStore} from "../models/Header/HeaderStore";
+import {HeaderStore} from "../models/Header/Header";
 import AbstractStore from "../models/AbstractStore";
-import {ButtonStore} from "../models/Button/ButtonStore";
+import {ButtonStore} from "../models/Button/Button";
 import {DropdownStore} from "../models/Dropdown/DropdownStore";
 import {TextAreaStore} from "../models/TextArea/TextAreaStore";
 

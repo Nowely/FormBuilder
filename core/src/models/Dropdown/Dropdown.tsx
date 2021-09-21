@@ -1,13 +1,13 @@
 import {makeObservable, observable} from "mobx";
 import {observer} from "mobx-react-lite";
 import React from "react";
-import AbstractStore from "../AbstractStore";
+import AbstractModel from "../AbstractModel";
 import {Design, Main} from "./DropdownTypes";
 import {DropdownView} from "../../views/DropdownView";
 import {IDropdown} from "./IDropdown";
 import {ControlString} from "../../utils/constants";
 
-export class DropdownStore extends AbstractStore implements  IDropdown{
+export class Dropdown extends AbstractModel implements  IDropdown{
     readonly controlType: ControlString = "Dropdown";
 
     constructor(key: string) {

@@ -1,2 +1,2 @@
-export {ButtonStore} from "./Button/Button"
-export {HeaderStore} from "./Header/Header"
+export {Button} from "./Button/Button"
+export {Header} from "./Header/Header"

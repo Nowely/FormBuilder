@@ -3,11 +3,11 @@ import React, {SyntheticEvent} from "react";
 import {Design, InputLabelPosition, InputType, Main, Size} from "./InputTypes";
 import {observer} from "mobx-react-lite";
 import {InputView} from "../../views/InputView";
-import AbstractStore from "../AbstractStore";
+import AbstractModel from "../AbstractModel";
 import {IInput} from "./IInput";
 import {ControlString} from "../../utils/constants";
 
-export class InputStore extends AbstractStore implements IInput {
+export class Input extends AbstractModel implements IInput {
     readonly controlType: ControlString = "Input"
 
     constructor(key: string) {

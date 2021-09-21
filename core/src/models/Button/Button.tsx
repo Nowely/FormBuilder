@@ -1,4 +1,4 @@
-import AbstractStore from "../AbstractStore";
+import AbstractModel from "../AbstractModel";
 import {Main} from "./ButtonTypes";
 import {observer} from "mobx-react-lite";
 import React from "react";
@@ -7,7 +7,7 @@ import {makeObservable, observable} from "mobx";
 import {IButton} from "./IButton";
 import {ControlString} from "../../utils/constants";
 
-export class ButtonStore extends AbstractStore implements IButton{
+export class Button extends AbstractModel implements IButton{
     readonly controlType: ControlString = "Button";
 
     constructor(key: string) {

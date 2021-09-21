@@ -1,23 +1,23 @@
 import {action, makeObservable, observable} from "mobx";
-import {InputStore} from "../models/Input/InputStore";
-import {HeaderStore} from "../models/Header/Header";
-import AbstractStore from "../models/AbstractStore";
-import {ButtonStore} from "../models/Button/Button";
-import {DropdownStore} from "../models/Dropdown/DropdownStore";
-import {TextAreaStore} from "../models/TextArea/TextAreaStore";
+import {Input} from "../models/Input/Input";
+import {Header} from "../models/Header/Header";
+import AbstractModel from "../models/AbstractModel";
+import {Button} from "../models/Button/Button";
+import {Dropdown} from "../models/Dropdown/Dropdown";
+import {TextArea} from "../models/TextArea/TextArea";
 import {TypeToClass} from "../utils/constants";
 
 
 class Store {
     readonly ModelType: TypeToClass = {
-        Input: InputStore,
-        Button: ButtonStore,
-        Header: HeaderStore,
-        TextArea: TextAreaStore,
-        Dropdown: DropdownStore
+        Input: Input,
+        Button: Button,
+        Header: Header,
+        TextArea: TextArea,
+        Dropdown: Dropdown
     }
 
-    model: AbstractStore[] = []
+    model: AbstractModel[] = []
 
     constructor() {
         makeObservable(this, {
@@ -77,31 +77,31 @@ class Store {
 
     setModelSnapshot(jsonString: string) {
         let json = JSON.parse(jsonString);
-        this.model = json.map(AbstractStore.castToStore)
+        this.model = json.map(AbstractModel.castToStore)
     }
 
 
     //TODO Test section
     fillFormModel(code: string, getForm: (code: string) => any[]) {
         //this.model = getForm(code);
-        let header = new HeaderStore("header 1")
+        let header = new Header("header 1")
         header.main.content = "Application Form"
         header.main.subheader = "Make it easier"
         this.model.push(header);
 
-        let title = new InputStore("title")
+        let title = new Input("title")
         title.main.label = "Title"
         this.model.push(title)
 
-        let firstName = new InputStore("first name")
+        let firstName = new Input("first name")
         firstName.main.label = "First Name"
         this.model.push(firstName)
 
-        let lastName = new InputStore("last name")
+        let lastName = new Input("last name")
         lastName.main.label = "Last Name"
         this.model.push(lastName)
 
-        let type = new DropdownStore("type")
+        let type = new Dropdown("type")
         type.main.label = "Type"
         type.main.data.push(
             {label: "Internal", value: "Internal"},
@@ -110,17 +110,17 @@ class Store {
         type.design.block = true
         this.model.push(type)
 
-        let comment = new TextAreaStore("comment");
+        let comment = new TextArea("comment");
         comment.main.label = "Comment"
         comment.main.rows = 5
         this.model.push(comment)
 
-        let saveButton = new ButtonStore("save")
+        let saveButton = new Button("save")
         saveButton.main.content = "Save"
         saveButton.main.appearance = "primary"
         this.model.push(saveButton);
 
-        let cancelButton = new ButtonStore("cancel")
+        let cancelButton = new Button("cancel")
         cancelButton.main.content = "Cancel"
         this.model.push(cancelButton);
 

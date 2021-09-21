@@ -1,4 +1,4 @@
-import AbstractStore from "../models/AbstractStore";
+import AbstractModel from "../models/AbstractModel";
 
 export enum Control {
     Input,
@@ -17,7 +17,7 @@ export type ControlString = keyof typeof Control
  * Type for correlation between name of control and their model
  */
 export type TypeToClass = {
-    [key in keyof typeof Control]: new (key: string) => AbstractStore
+    [key in keyof typeof Control]: new (key: string) => AbstractModel
 };
 
 

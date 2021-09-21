@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 import {ControlString} from "../utils/constants";
 import {store} from "../stores/Store";
 
-export default abstract class AbstractStore {
+export default abstract class AbstractModel {
     key: string
     abstract readonly controlType: ControlString
 

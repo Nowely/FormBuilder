@@ -1,10 +1,10 @@
 import {action, makeObservable, observable} from "mobx";
-import React, {SyntheticEvent} from "react";
 import {Design, InputLabelPosition, InputType, Main, Size} from "./InputTypes";
 import {InputView} from "../../views/InputView";
 import AbstractModel from "../AbstractModel";
 import {IInput} from "./IInput";
 import {ControlString} from "../../utils/constants";
+import {SyntheticEvent} from "react";
 
 export class Input extends AbstractModel implements IInput {
     readonly type: ControlString = "Input"

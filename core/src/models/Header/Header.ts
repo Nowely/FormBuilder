@@ -1,5 +1,4 @@
 import {Main} from "./HeaderTypes";
-import React from "react";
 import {HeaderView} from "../../views/HeaderView";
 import AbstractModel from "../AbstractModel";
 import {makeObservable, observable} from "mobx";

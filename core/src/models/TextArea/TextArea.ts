@@ -1,7 +1,6 @@
 import AbstractModel from "../AbstractModel";
 import {Main} from "./TextAreaTypes";
 import {makeObservable, observable} from "mobx";
-import React from "react";
 import {TextAreaView} from "../../views/TextAreaView";
 import {ITextArea} from "./ITextArea";
 import {ControlString} from "../../utils/constants";

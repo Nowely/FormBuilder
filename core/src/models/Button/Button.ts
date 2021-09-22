@@ -1,6 +1,5 @@
 import AbstractModel from "../AbstractModel";
 import {Main} from "./ButtonTypes";
-import React from "react";
 import {ButtonView} from "../../views/ButtonView";
 import {makeObservable, observable} from "mobx";
 import {IButton} from "./IButton";

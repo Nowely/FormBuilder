@@ -1,5 +1,4 @@
 import {makeObservable, observable} from "mobx";
-import React from "react";
 import AbstractModel from "../AbstractModel";
 import {Design, Main} from "./DropdownTypes";
 import {DropdownView} from "../../views/DropdownView";

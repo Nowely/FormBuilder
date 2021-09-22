@@ -1,11 +1,11 @@
 import {Form, Input} from "rsuite";
 import {ITextArea} from "../models/TextArea/ITextArea";
 
-export const TextAreaView = ({store} : {store: ITextArea}) => {
+export const TextAreaView = ({model} : {model: ITextArea}) => {
     return (
         <div>
-            <Form.ControlLabel>{store.main.label}</Form.ControlLabel>
-            <Textarea {...store.main}/>
+            <Form.ControlLabel>{model.main.label}</Form.ControlLabel>
+            <Textarea {...model.main}/>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import {Main} from "./HeaderTypes";
-import {observer} from "mobx-react-lite";
 import React from "react";
 import {HeaderView} from "../../views/HeaderView";
 import AbstractModel from "../AbstractModel";
@@ -17,10 +16,7 @@ export class Header extends AbstractModel implements IHeader{
         })
     }
 
-    getComponent = () => {
-        const ObservableComponent = observer(HeaderView);
-        return <ObservableComponent store={this}/>
-    };
+    getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, HeaderView);
 
     main: Main = {
         content: "",

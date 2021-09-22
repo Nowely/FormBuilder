@@ -1,5 +1,4 @@
 import {makeObservable, observable} from "mobx";
-import {observer} from "mobx-react-lite";
 import React from "react";
 import AbstractModel from "../AbstractModel";
 import {Design, Main} from "./DropdownTypes";
@@ -18,10 +17,7 @@ export class Dropdown extends AbstractModel implements  IDropdown{
         })
     }
 
-    getComponent = () => {
-        const ObservableComponent = observer(DropdownView);
-        return <ObservableComponent store={this}/>
-    };
+    getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, DropdownView);
 
     main: Main = {
         label: "",

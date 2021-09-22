@@ -1,7 +1,6 @@
 import AbstractModel from "../AbstractModel";
 import {Main} from "./TextAreaTypes";
 import {makeObservable, observable} from "mobx";
-import {observer} from "mobx-react-lite";
 import React from "react";
 import {TextAreaView} from "../../views/TextAreaView";
 import {ITextArea} from "./ITextArea";
@@ -17,10 +16,7 @@ export class TextArea extends AbstractModel implements ITextArea{
         })
     }
 
-    getComponent = () => {
-        const ObservableComponent = observer(TextAreaView);
-        return <ObservableComponent store={this}/>
-    };
+    getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, TextAreaView);
 
     main: Main = {
         label: "",

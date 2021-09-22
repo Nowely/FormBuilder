@@ -1,7 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 import React, {SyntheticEvent} from "react";
 import {Design, InputLabelPosition, InputType, Main, Size} from "./InputTypes";
-import {observer} from "mobx-react-lite";
 import {InputView} from "../../views/InputView";
 import AbstractModel from "../AbstractModel";
 import {IInput} from "./IInput";
@@ -20,10 +19,7 @@ export class Input extends AbstractModel implements IInput {
         })
     }
 
-    getComponent = () => {
-        const ObservableComponent = observer(InputView);
-        return <ObservableComponent store={this}/>
-    };
+    getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, InputView);
 
     value: string | number | readonly string[] = "";
     onChange(value: string | number | readonly string[], event: SyntheticEvent<Element, Event>): void {

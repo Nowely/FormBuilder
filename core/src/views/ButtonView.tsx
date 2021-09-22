@@ -2,9 +2,9 @@ import {Button} from "rsuite";
 import {IButton} from "../models/Button/IButton";
 
 
-export const ButtonView = ({store}: { store: IButton}) => {
+export const ButtonView = ({model}: { model: IButton}) => {
 
 return (
-    <Button appearance={store.main.appearance} children={store.main.content}/>
+    <Button appearance={model.main.appearance} children={model.main.content}/>
 )
 }

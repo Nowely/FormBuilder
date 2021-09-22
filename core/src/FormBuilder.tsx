@@ -14,15 +14,12 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
         store.fillFormModel("test", props.getForm);
     }, []);
 
-    let result = store.model.map(value => {
-        const Component = (props: {}) => <>{value.getComponent()}</>
-        return <Component key={value.key}/>
-    });
+    let components = store.model.map(value => value.getComponent());
 
     return <div>
         <Button onClick={store.download}>Download</Button>
         <Button onClick={store.upload}>Upload</Button>
         <Button onClick={store.clear}>Clear</Button>
-        {result}
+        {components}
     </div>;
 })

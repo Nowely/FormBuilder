@@ -1,6 +1,7 @@
 import {makeObservable, observable} from "mobx";
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {ControlString} from "../utils/constants";
+import {observer} from "mobx-react-lite";
 
 export default abstract class AbstractModel {
     key: string
@@ -16,4 +17,12 @@ export default abstract class AbstractModel {
 
     //TODO универсальная реализация? Валидация?
     abstract getComponent: () => ReactNode
+
+
+    static wrapComponent = <P extends object>(
+        key: string, props: P, view: React.FunctionComponent<P>) => {
+
+        const ObservableComponent = observer(view);
+        return <ObservableComponent key={key} {...props}/>
+    }
 }

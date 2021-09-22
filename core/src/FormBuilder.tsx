@@ -58,7 +58,7 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 
             <Col md={15}>{store.components}</Col>
 
-            <Col>
+            <Col md={5}>
                 <Nav appearance={"tabs"} activeKey={activeTab} onSelect={setActiveTab} style={styles}>
                     <Nav.Item eventKey={"main"} children={"Main"}/>
                     <Nav.Item eventKey={"design"} children={"Design"}/>

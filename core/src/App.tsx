@@ -8,7 +8,7 @@ function App() {
     return (
         <Container>
             <Header/>
-            <Content style={{margin: '6%'}}>
+            <Content style={{margin: '1%'}}>
                 {/*<SampleForm/>*/}
 
                 <br/>

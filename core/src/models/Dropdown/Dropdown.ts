@@ -19,7 +19,7 @@ export class Dropdown extends AbstractModel implements  IDropdown{
     getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, DropdownView);
 
     main: Main = {
-        label: "",
+        label: "Dropdown",
         data: [],
         placeholder: ""
     };

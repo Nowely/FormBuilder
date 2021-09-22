@@ -18,7 +18,7 @@ export class TextArea extends AbstractModel implements ITextArea{
     getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, TextAreaView);
 
     main: Main = {
-        label: "",
+        label: "TextArea",
         placeholder: "",
         rows: 3
     };

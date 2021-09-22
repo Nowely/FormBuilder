@@ -19,7 +19,7 @@ export class Button extends AbstractModel implements IButton {
 
     main: Main = {
         appearance: "default",
-        content: ""
+        content: "Button"
 
     };
 }

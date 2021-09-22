@@ -18,7 +18,7 @@ export class Header extends AbstractModel implements IHeader{
     getComponent = () => AbstractModel.wrapComponent(this.key, {model: this}, HeaderView);
 
     main: Main = {
-        content: "",
+        content: "Header",
         subheader: ""
     };
 }

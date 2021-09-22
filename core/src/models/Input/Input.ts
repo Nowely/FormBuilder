@@ -27,7 +27,7 @@ export class Input extends AbstractModel implements IInput {
     }
 
     main: Main = {
-        label: "",
+        label: "Input",
         type: InputType.Text,
         labelPosition: InputLabelPosition.Default,
         placeholder: "",

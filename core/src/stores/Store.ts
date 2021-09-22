@@ -18,20 +18,26 @@ class Store {
         Dropdown: Dropdown
     }
 
-    model: AbstractModel[] = []
+    models: AbstractModel[] = []
 
     get components() {
         console.log("Computing...")
-        return this.model.map(value => value.getComponent());
+        return this.models.map(value => value.getComponent());
     }
 
     get keys() {
-        return this.model.map(value => value.key);
+        return this.models.map(value => value.key);
+    }
+
+    getModel(key: string):AbstractModel | null {
+        let model = this.models.find(value => value.key == key);
+        if (model) return model
+        return null;
     }
 
     constructor() {
         makeObservable(this, {
-            model: observable,
+            models: observable,
             components: computed,
             keys: computed,
             download: action.bound,
@@ -81,16 +87,16 @@ class Store {
     }
 
     clear() {
-        this.model = [];
+        this.models = [];
     }
 
     getModelSnapshot() {
-        return JSON.stringify(this.model, null, 2)
+        return JSON.stringify(this.models, null, 2)
     }
 
     setModelSnapshot(jsonString: string) {
         let json = JSON.parse(jsonString);
-        this.model = json.map(toModel)
+        this.models = json.map(toModel)
     }
 
     add(type: string){
@@ -99,31 +105,31 @@ class Store {
         let modelType = this.ModelType[type as any];
         let key = (Math.random() + 1).toString(36).substring(7);
         let model = new modelType(key)
-        this.model.push(model)
+        this.models.push(model)
     }
 
 
     //TODO Test section
     fillFormModel(code: string, getForm: (code: string) => any[]) {
         //this.model = getForm(code);
-        if (this.model.length > 0) return
+        if (this.models.length > 0) return
 
         let header = new Header("header 1")
         header.main.content = "Application Form"
         header.main.subheader = "Make it easier"
-        this.model.push(header);
+        this.models.push(header);
 
         let title = new Input("title")
         title.main.label = "Title"
-        this.model.push(title)
+        this.models.push(title)
 
         let firstName = new Input("first name")
         firstName.main.label = "First Name"
-        this.model.push(firstName)
+        this.models.push(firstName)
 
         let lastName = new Input("last name")
         lastName.main.label = "Last Name"
-        this.model.push(lastName)
+        this.models.push(lastName)
 
         let type = new Dropdown("type")
         type.main.label = "Type"
@@ -132,21 +138,21 @@ class Store {
             {label: "External", value: "External"},
             {label: "Direct", value: "Direct"})
         type.design.block = true
-        this.model.push(type)
+        this.models.push(type)
 
         let comment = new TextArea("comment");
         comment.main.label = "Comment"
         comment.main.rows = 5
-        this.model.push(comment)
+        this.models.push(comment)
 
         let saveButton = new Button("save")
         saveButton.main.content = "Save"
         saveButton.main.appearance = "primary"
-        this.model.push(saveButton);
+        this.models.push(saveButton);
 
         let cancelButton = new Button("cancel")
         cancelButton.main.content = "Cancel"
-        this.model.push(cancelButton);
+        this.models.push(cancelButton);
 
     }
 }

@@ -3,7 +3,8 @@ import AbstractModel from "../AbstractModel";
 import {Design, Main} from "./DropdownTypes";
 import {DropdownView} from "../../views/DropdownView";
 import {IDropdown} from "./IDropdown";
-import {ControlString} from "../../utils/constants";
+import {ControlString, PropDescription} from "../../utils/constants";
+import {DropdownDescription} from "./DropdownDescription";
 
 export class Dropdown extends AbstractModel implements  IDropdown{
     readonly type: ControlString = "Dropdown";
@@ -29,4 +30,6 @@ export class Dropdown extends AbstractModel implements  IDropdown{
         className: "",
         block: false
     };
+
+    getDescription = () => DropdownDescription as unknown as { [key: string]: [PropDescription | null] };
 }

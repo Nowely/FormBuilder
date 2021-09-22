@@ -44,7 +44,7 @@ type Paths<T, D extends number = 10> = [D] extends [never] ? never : T extends o
 
 
 
-type PropDescription = {
+export type PropDescription = {
     title: string
     description?: string
 }

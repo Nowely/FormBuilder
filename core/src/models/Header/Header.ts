@@ -3,7 +3,8 @@ import {HeaderView} from "../../views/HeaderView";
 import AbstractModel from "../AbstractModel";
 import {makeObservable, observable} from "mobx";
 import {IHeader} from "./IHeader";
-import {ControlString} from "../../utils/constants";
+import {ControlString, PropDescription} from "../../utils/constants";
+import {HeaderDescription} from "./HeaderDescription";
 
 export class Header extends AbstractModel implements IHeader{
     readonly type: ControlString = "Header";
@@ -21,4 +22,18 @@ export class Header extends AbstractModel implements IHeader{
         content: "Header",
         subheader: ""
     };
+
+    /*getDescription<T>(): AllPropsDescriptionOf<T> {
+        return undefined;
+    }*/
+
+    /*getDescription<IHeader>(): AllPropsDescriptionOf<IHeader> {
+        return HeaderDescription;
+    }*/
+
+    getDescription = () => HeaderDescription as unknown as { [key: string]: [PropDescription | null] };
+    //getDescription = () => HeaderDescription;
+    /*getDescription: () => AllPropsDescriptionOf<IHeader> = () => {
+        return HeaderDescription;
+    }*/
 }

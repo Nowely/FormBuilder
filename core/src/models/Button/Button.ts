@@ -3,7 +3,8 @@ import {Main} from "./ButtonTypes";
 import {ButtonView} from "../../views/ButtonView";
 import {makeObservable, observable} from "mobx";
 import {IButton} from "./IButton";
-import {ControlString} from "../../utils/constants";
+import {ControlString, PropDescription} from "../../utils/constants";
+import {ButtonDescription} from "./ButtonDescription";
 
 export class Button extends AbstractModel implements IButton {
     readonly type: ControlString = "Button";
@@ -22,4 +23,6 @@ export class Button extends AbstractModel implements IButton {
         content: "Button"
 
     };
+
+    getDescription = () => ButtonDescription as unknown as { [key: string]: [PropDescription | null] };
 }

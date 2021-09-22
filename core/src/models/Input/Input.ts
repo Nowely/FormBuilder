@@ -3,8 +3,9 @@ import {Design, InputLabelPosition, InputType, Main, Size} from "./InputTypes";
 import {InputView} from "../../views/InputView";
 import AbstractModel from "../AbstractModel";
 import {IInput} from "./IInput";
-import {ControlString} from "../../utils/constants";
+import {ControlString, PropDescription} from "../../utils/constants";
 import {SyntheticEvent} from "react";
+import {InputDescription} from "./InputDescription";
 
 export class Input extends AbstractModel implements IInput {
     readonly type: ControlString = "Input"
@@ -46,4 +47,6 @@ export class Input extends AbstractModel implements IInput {
         adaptiveLayout: false,
     };
 
+
+    getDescription = () => InputDescription as unknown as { [key: string]: [PropDescription | null] };
 }

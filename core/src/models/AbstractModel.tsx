@@ -1,6 +1,6 @@
 import {makeObservable, observable} from "mobx";
 import React, {ReactNode} from "react";
-import {ControlString} from "../utils/constants";
+import {ControlString, PropDescription} from "../utils/constants";
 import {observer} from "mobx-react-lite";
 
 export default abstract class AbstractModel {
@@ -25,4 +25,6 @@ export default abstract class AbstractModel {
         const ObservableComponent = observer(view);
         return <ObservableComponent key={key} {...props}/>
     }
+
+    abstract getDescription: () => { [key: string]: [PropDescription | null] }
 }

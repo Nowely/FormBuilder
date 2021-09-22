@@ -24,11 +24,3 @@ export class Button extends AbstractModel implements IButton {
 
     };
 }
-
-/*
-const wrapComponent = <P extends object>(
-    key: string, props: P, view: React.FunctionComponent<P>) => {
-
-    const ObservableComponent = observer(view);
-    return <ObservableComponent key={key} {...props}/>
-}*/

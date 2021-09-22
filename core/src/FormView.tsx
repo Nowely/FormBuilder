@@ -13,13 +13,11 @@ export const FormView = observer((props: FormViewProps) => {
         store.fillFormModel("test", props.getForm);
     }, []);
 
-    let components = store.model.map(value => value.getComponent());
-
     return <div>
         <Button onClick={store.download}>Download</Button>
         <Button onClick={store.upload}>Upload</Button>
         <Button onClick={store.clear}>Clear</Button>
-        {components}
+        {store.components}
     </div>;
 })
 

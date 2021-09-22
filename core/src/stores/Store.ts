@@ -1,4 +1,4 @@
-import {action, makeObservable, observable} from "mobx";
+import {action, computed, makeObservable, observable} from "mobx";
 import {Input} from "../models/Input/Input";
 import {Header} from "../models/Header/Header";
 import AbstractModel from "../models/AbstractModel";
@@ -20,9 +20,20 @@ class Store {
 
     model: AbstractModel[] = []
 
+    get components() {
+        console.log("Computing...")
+        return this.model.map(value => value.getComponent());
+    }
+
+    get keys() {
+        return this.model.map(value => value.key);
+    }
+
     constructor() {
         makeObservable(this, {
             model: observable,
+            components: computed,
+            keys: computed,
             download: action.bound,
             upload: action.bound,
             clear: action.bound,
@@ -49,12 +60,12 @@ class Store {
 
         input.onchange = e => {
 
-            const target= e.target as HTMLInputElement;
+            const target = e.target as HTMLInputElement;
             const file: File = (target.files as FileList)[0];
 
             // setting up the reader
             var reader = new FileReader();
-            reader.readAsText(file,'UTF-8');
+            reader.readAsText(file, 'UTF-8');
 
             // here we tell the reader what to do when it's done reading...
             reader.onload = readerEvent => {
@@ -68,7 +79,7 @@ class Store {
         input.click();
     }
 
-    clear () {
+    clear() {
         this.model = [];
     }
 
@@ -85,6 +96,8 @@ class Store {
     //TODO Test section
     fillFormModel(code: string, getForm: (code: string) => any[]) {
         //this.model = getForm(code);
+        if (this.model.length > 0) return
+
         let header = new Header("header 1")
         header.main.content = "Application Form"
         header.main.subheader = "Make it easier"

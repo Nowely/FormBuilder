@@ -5,7 +5,7 @@ import AbstractModel from "../models/AbstractModel";
 import {Button} from "../models/Button/Button";
 import {Dropdown} from "../models/Dropdown/Dropdown";
 import {TextArea} from "../models/TextArea/TextArea";
-import {TypeToClass} from "../utils/constants";
+import {Control, TypeToClass} from "../utils/constants";
 import toModel from "../utils/toModel";
 
 
@@ -38,6 +38,7 @@ class Store {
             upload: action.bound,
             clear: action.bound,
             fillFormModel: action.bound,
+            add: action.bound
         })
     }
 
@@ -90,6 +91,15 @@ class Store {
     setModelSnapshot(jsonString: string) {
         let json = JSON.parse(jsonString);
         this.model = json.map(toModel)
+    }
+
+    add(type: string){
+        console.log(type)
+        //console.log(Control[Control[type]])
+        let modelType = this.ModelType[type as any];
+        let key = (Math.random() + 1).toString(36).substring(7);
+        let model = new modelType(key)
+        this.model.push(model)
     }
 
 

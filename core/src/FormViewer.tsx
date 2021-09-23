@@ -8,7 +8,7 @@ export interface FormViewProps {
     getForm: ((code: string) => AbstractModel[])
 }
 
-export const FormView = observer((props: FormViewProps) => {
+export const FormViewer = observer((props: FormViewProps) => {
     useEffect(() => {
         store.fillFormModel("test", props.getForm);
     }, []);

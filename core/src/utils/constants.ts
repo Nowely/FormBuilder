@@ -6,6 +6,15 @@ export enum Control {
     Header,
     TextArea,
     Dropdown,
+    Container
+}
+
+//TODO instead one enum use interface (or type) with type of control with enum?
+//If
+interface Component {
+    control: Control
+    //layout: Layout
+    //collection:
 }
 
 /**
@@ -60,3 +69,10 @@ export type AllPropsDescriptionOf<T extends object> = {
 type Replace<T, B> = T extends object
     ? { [key in keyof T]: T[key] extends object ? Replace<T[key], B> : B }
     : T;
+
+export type key = string | {key: string, children: key[]}
+export type keys = key[]
+
+/*
+var a: key = "a"
+var b: key = {"b": []}*/

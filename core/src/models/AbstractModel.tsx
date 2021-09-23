@@ -23,8 +23,11 @@ export default abstract class AbstractModel {
         key: string, props: P, view: React.FunctionComponent<P>) => {
 
         const ObservableComponent = observer(view);
+
         return <ObservableComponent key={key} {...props}/>
     }
 
     abstract getDescription: () => { [key: string]: [PropDescription | null] }
+
+    children?: AbstractModel[]
 }

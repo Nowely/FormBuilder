@@ -5,8 +5,9 @@ import AbstractModel from "../models/AbstractModel";
 import {Button} from "../models/Button/Button";
 import {Dropdown} from "../models/Dropdown/Dropdown";
 import {TextArea} from "../models/TextArea/TextArea";
-import {Control, TypeToClass} from "../utils/constants";
+import {Control, key, TypeToClass} from "../utils/constants";
 import toModel from "../utils/toModel";
+import {Container} from "../models/Container/Container";
 
 
 class Store {
@@ -15,7 +16,8 @@ class Store {
         Button: Button,
         Header: Header,
         TextArea: TextArea,
-        Dropdown: Dropdown
+        Dropdown: Dropdown,
+        Container: Container
     }
 
     models: AbstractModel[] = []
@@ -25,10 +27,22 @@ class Store {
         return this.models.map(value => value.getComponent());
     }
 
-    get keys() {
-        return this.models.map(value => value.key);
+    get keys(): key[] {
+        return this.models.map(value => {
+            return  getKeys(value)
+        });
+
+        function getKeys(model: AbstractModel): key {
+            if (model.children?.length) {
+                return {key: model.key, children: model.children.map(getKeys)}
+            }
+            return model.key
+        }
+        //return this.models.map(value => value.key);
     }
 
+    //TODO add more easy way to get all keys and their model
+    //TODO nested model
     getModel(key: string):AbstractModel | null {
         let model = this.models.find(value => value.key == key);
         if (model) return model
@@ -123,13 +137,16 @@ class Store {
         title.main.label = "Title"
         this.models.push(title)
 
+        let nameContainer = new Container("name container")
+        this.models.push(nameContainer)
+
         let firstName = new Input("first name")
         firstName.main.label = "First Name"
-        this.models.push(firstName)
+        nameContainer.children.push(firstName)
 
         let lastName = new Input("last name")
         lastName.main.label = "Last Name"
-        this.models.push(lastName)
+        nameContainer.children.push(lastName)
 
         let type = new Dropdown("type")
         type.main.label = "Type"
@@ -145,14 +162,17 @@ class Store {
         comment.main.rows = 5
         this.models.push(comment)
 
+        let buttonContainer = new Container("button container")
+        this.models.push(buttonContainer)
+
         let saveButton = new Button("save")
         saveButton.main.content = "Save"
         saveButton.main.appearance = "primary"
-        this.models.push(saveButton);
+        buttonContainer.children.push(saveButton);
 
         let cancelButton = new Button("cancel")
         cancelButton.main.content = "Cancel"
-        this.models.push(cancelButton);
+        buttonContainer.children.push(cancelButton);
 
     }
 }

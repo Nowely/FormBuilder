@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {store} from "./stores/Store";
 import {Button, Col, Dropdown, Form, Input as RInput, Input, Nav, Row} from "rsuite";
 import AbstractModel from "./models/AbstractModel";
-import {Control, ControlString} from "./utils/constants";
+import {Control, ControlString, key} from "./utils/constants";
 import _ from "lodash";
 
 
@@ -32,12 +32,26 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 
     var controls = Object.values(Control).filter(value => _.isString(value)) as string[];
 
+    function getKeyNavItem(key: key) {
+        if (typeof key == "string")
+            return <Nav.Item eventKey={key} children={key}/>;
+
+        return <>
+            <Nav.Item eventKey={key.key} children={key.key}/>
+            <Nav style={{marginLeft: 15, ...styles}} appearance={"subtle"} vertical activeKey={active} onSelect={setActive}>
+                {key.children.map(getKeyNavItem)}
+            </Nav>
+        </>
+
+    }
+
+    console.log(store.keys)
     return <div>
         <Button onClick={store.download}>Download</Button>
         <Button onClick={store.upload}>Upload</Button>
         <Button onClick={store.clear}>Clear</Button>
         <Dropdown title={"Components"}>
-            {controls.map(value => <Dropdown.Item onClick={()=> store.add(value)}>{value}</Dropdown.Item>)}
+            {controls.map(value => <Dropdown.Item onClick={() => store.add(value)}>{value}</Dropdown.Item>)}
         </Dropdown>
 
         <br/><br/>
@@ -45,14 +59,9 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
         <Row>
             <Col md={4}>
                 <Nav appearance={"subtle"} vertical activeKey={active} onSelect={setActive} style={styles}>
-                    {store.keys.map((key) => <Nav.Item eventKey={key} children={key}/>)}
+                    {store.keys.map(getKeyNavItem)}
 
 
-                    {/*<Nav.Item>
-                        <Nav appearance={"subtle"} vertical activeKey={active} onSelect={setActive} style={styles}>
-                            {store.keys.map((key) => <Nav.Item eventKey={key} children={key}/>)}
-                        </Nav>
-                    </Nav.Item>*/}
                 </Nav>
             </Col>
 
@@ -81,3 +90,7 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 })
 
 const styles = {width: 150};
+
+const keyNav = () => {
+
+}

@@ -52,7 +52,6 @@ type Paths<T, D extends number = 10> = [D] extends [never] ? never : T extends o
     }[keyof T] : ""
 
 
-
 export type PropDescription = {
     title: string
     description?: string
@@ -70,9 +69,6 @@ type Replace<T, B> = T extends object
     ? { [key in keyof T]: T[key] extends object ? Replace<T[key], B> : B }
     : T;
 
-export type key = string | {key: string, children: key[]}
-export type keys = key[]
+export type key = string | { key: string, children: key[] }
+//export type node<T> = { key: string, value: T, parent?: T, children?: key[] }
 
-/*
-var a: key = "a"
-var b: key = {"b": []}*/

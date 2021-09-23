@@ -5,9 +5,10 @@ import AbstractModel from "../models/AbstractModel";
 import {Button} from "../models/Button/Button";
 import {Dropdown} from "../models/Dropdown/Dropdown";
 import {TextArea} from "../models/TextArea/TextArea";
-import {Control, key, TypeToClass} from "../utils/constants";
+import {TypeToClass} from "../utils/constants";
 import toModel from "../utils/toModel";
 import {Container} from "../models/Container/Container";
+import {Tree} from "../utils/Tree";
 
 
 class Store {
@@ -27,33 +28,16 @@ class Store {
         return this.models.map(value => value.getComponent());
     }
 
-    get keys(): key[] {
-        return this.models.map(value => {
-            return  getKeys(value)
-        });
-
-        function getKeys(model: AbstractModel): key {
-            if (model.children?.length) {
-                return {key: model.key, children: model.children.map(getKeys)}
-            }
-            return model.key
-        }
-        //return this.models.map(value => value.key);
-    }
-
-    //TODO add more easy way to get all keys and their model
-    //TODO nested model
-    getModel(key: string):AbstractModel | null {
-        let model = this.models.find(value => value.key == key);
-        if (model) return model
-        return null;
+    //TODO optimize?
+    get tree(): Tree {
+        return new Tree(this.models)
     }
 
     constructor() {
         makeObservable(this, {
             models: observable,
             components: computed,
-            keys: computed,
+            tree: computed,
             download: action.bound,
             upload: action.bound,
             clear: action.bound,
@@ -113,7 +97,7 @@ class Store {
         this.models = json.map(toModel)
     }
 
-    add(type: string){
+    add(type: string) {
         console.log(type)
         //console.log(Control[Control[type]])
         let modelType = this.ModelType[type as any];

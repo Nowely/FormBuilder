@@ -3,7 +3,7 @@ import React, {ReactNode, useEffect, useState} from "react";
 import {store} from "./stores/Store";
 import {Button, Col, Dropdown, Form, Input as RInput, Input, Nav, Row} from "rsuite";
 import AbstractModel from "./models/AbstractModel";
-import {Control, ControlString, key} from "./utils/constants";
+import {Control} from "./utils/constants";
 import _ from "lodash";
 import {Node} from "./utils/Tree";
 
@@ -34,69 +34,49 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 
     var controls = Object.values(Control).filter(value => _.isString(value)) as string[];
 
-    function getKeyNavItem(key: key) {
-        if (typeof key == "string")
-            return <Nav.Item eventKey={key} children={key}/>;
-
-        return <>
-            <Nav.Item eventKey={key.key} children={key.key}/>
-            <Nav style={{marginLeft: 15, ...styles}} appearance={"subtle"} vertical activeKey={active}
-                 onSelect={setActive}>
-                {key.children.map(getKeyNavItem)}
-            </Nav>
-        </>
-
-    }
-
     const TreeViewer = () => {
-
-
         //TODO correct depth or recursive call
         let result = store.tree.reduce(
-            (accumulator, node, depthLevel, currentIndex, rootNode) => {
+            (temp, accumulator, node, depthLevel, rootNode) => {
 
-                accumulator.push(<Nav.Item eventKey={node.key} children={node.key}/>)
+                if (accumulator[node.key] == undefined)
+                    accumulator[node.key] = []
 
+                //First call - create main parent
+                if (node.isRoot) {
+                    temp = (<Nav
+                        style={{marginLeft: depthLevel * 15, ...styles}}
+                        appearance={"subtle"}
+                        vertical
+                        activeKey={active}
+                        onSelect={setActive}>
+                        {accumulator[node.key]}
+                    </Nav>)
+                    return temp
+                }
+
+                //Usual call
+                accumulator[node.parent?.key ?? ""].push(<Nav.Item eventKey={node.key} children={node.key}/>)
+
+                //If have children
                 if (node.children)
-                    accumulator.push(
+                    accumulator[node.parent?.key ?? ""].push(
                         <Nav
                             style={{marginLeft: depthLevel * 15, ...styles}}
                             appearance={"subtle"}
                             vertical
                             activeKey={active}
                             onSelect={setActive}>
-
+                            {accumulator[node.key]}
                         </Nav>
                     )
 
-                return accumulator;
-            }, new Array<ReactNode>())
+                return temp;
+            })
 
 
-        //let a = new JSX.Element()
-
-        return (
-            <Nav
-                style={{marginLeft: 0 * 15, ...styles}}
-                appearance={"subtle"}
-                vertical
-                activeKey={active}
-                onSelect={setActive}>
-                {result}
-            </Nav>
-        )
+        return (result)
     }
-    /*const TreeViewer = () => {
-
-
-        return (
-            <Nav appearance={"subtle"} vertical activeKey={active} onSelect={setActive} style={styles}>
-                {store.tree.root.map(getKeyNavItem)}
-
-
-            </Nav>
-        )
-    }*/
 
     console.log(store.tree)
     return <div>

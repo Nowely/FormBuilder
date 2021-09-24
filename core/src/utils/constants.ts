@@ -1,4 +1,5 @@
 import AbstractModel from "../models/AbstractModel";
+import {ReactNode} from "react";
 
 export enum Control {
     Input,
@@ -69,6 +70,4 @@ type Replace<T, B> = T extends object
     ? { [key in keyof T]: T[key] extends object ? Replace<T[key], B> : B }
     : T;
 
-export type key = string | { key: string, children: key[] }
-//export type node<T> = { key: string, value: T, parent?: T, children?: key[] }
-
+export type accumulator<U> = {[key: string]: U}

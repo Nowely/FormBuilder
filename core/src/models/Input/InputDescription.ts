@@ -2,6 +2,7 @@ import {IInput} from "./IInput";
 import {AllPropsDescriptionOf} from "../../utils/constants";
 
 export const InputDescription: AllPropsDescriptionOf<IInput> = {
+    key: null,
     "design.adaptiveLayout": {title: "Adaptive Layout"},
     "design.className": null,
     "design.hidden": null,

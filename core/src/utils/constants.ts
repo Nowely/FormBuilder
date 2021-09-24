@@ -59,7 +59,7 @@ export type PropDescription = {
 }
 
 export type AllPropsDescriptionOf<T extends object> = {
-    [keys in Paths<T>]: PropDescription | null;
+    [keys in Paths<T> | 'key']: PropDescription | null;
 };
 
 /**

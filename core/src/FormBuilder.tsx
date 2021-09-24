@@ -1,11 +1,12 @@
 import {observer} from "mobx-react-lite";
 import React, {ReactNode, useEffect, useState} from "react";
 import {store} from "./stores/Store";
-import {Button, Col, Dropdown, Form, Input as RInput, Input, Nav, Row} from "rsuite";
+import {Button, Col, Dropdown, Form, Input as RInput, Input, Nav, Row, Tree} from "rsuite";
 import AbstractModel from "./models/AbstractModel";
 import {Control} from "./utils/constants";
 import _ from "lodash";
 import {Node} from "./utils/Tree";
+import {ItemDataType} from "rsuite/esm/@types/common";
 
 
 export interface FormBuilderProps {
@@ -79,6 +80,7 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
     }
 
     console.log(store.tree)
+    //TODO upgrade tree now its so poorly
     return <div>
         <Button onClick={store.download}>Download</Button>
         <Button onClick={store.upload}>Upload</Button>
@@ -91,7 +93,14 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 
         <Row>
             <Col md={4}>
-                <TreeViewer/>
+                <Tree
+                    draggable
+                    onSelect={(activeNode, value) => setActive(value as string)}
+                    value={active}
+                    labelKey="key"
+                    valueKey="key"
+                    style={{maxHeight:'inherit', height:'inherit'}}
+                    data={store.tree.root.children as unknown as ItemDataType[]}/>
             </Col>
 
             <Col md={15}>{store.components}</Col>
@@ -119,7 +128,3 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
 })
 
 const styles = {width: 150};
-
-const keyNav = () => {
-
-}

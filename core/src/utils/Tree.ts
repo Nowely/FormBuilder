@@ -1,6 +1,7 @@
 import AbstractModel from "../models/AbstractModel";
 import _, {functions} from "lodash";
 import {accumulator} from "./constants";
+import {ItemDataType} from "rsuite/esm/@types/common";
 
 
 export class Tree {
@@ -22,8 +23,9 @@ export class Tree {
 
     }*/
 
+    //TODO remove any and set clear description and logic
     reduce<U>(
-        callback: (temp: any, accumulator: any, node: Node, depthLevel: number, rootNode: Node) => U,
+        callback: (temp: U, accumulator: accumulator<any>, node: Node, depthLevel: number, rootNode: Node) => U,
         initialValue?: U): U {
         let accumulator: accumulator<any> = {};
         let result;
@@ -32,7 +34,7 @@ export class Tree {
     }
 
     private static reduce<U>(
-        result: any, accumulator: any, node: Node, depthLevel: number, root: Node,
+        result: U | undefined, accumulator: accumulator<any>, node: Node, depthLevel: number, root: Node,
         callback: (temp: any, accumulator: any, node: Node, depthLevel: number, rootNode: Node) => U,
         initialValue?: U): U {
 
@@ -71,19 +73,19 @@ export class Tree {
 }
 
 export class Node {
-    get key(): string {
-        return this.value?.key ?? "";
-    }
+    key: string
 
     get isRoot(): boolean {
         return _.isNull(this.value);
     }
 
-    readonly value: AbstractModel | null = null
+    value: AbstractModel | null = null
     parent?: AbstractModel
     children?: Node[]
 
     constructor(value?: AbstractModel, parent?: AbstractModel) {
+        this.key = value?.key ?? "";
+
         if (value)
             this.value = value;
 

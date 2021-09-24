@@ -27,7 +27,7 @@ export default abstract class AbstractModel {
         return <ObservableComponent key={key} {...props}/>
     }
 
-    abstract getDescription: () => { [key: string]: [PropDescription | null] }
+    abstract getDescription: () => { [key: string]: PropDescription | null }
 
     children?: AbstractModel[]
 }

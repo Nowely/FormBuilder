@@ -31,5 +31,5 @@ export class Dropdown extends AbstractModel implements  IDropdown{
         block: false
     };
 
-    getDescription = () => DropdownDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => DropdownDescription as unknown as { [key: string]: PropDescription | null };
 }

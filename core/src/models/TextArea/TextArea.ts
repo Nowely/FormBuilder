@@ -24,5 +24,5 @@ export class TextArea extends AbstractModel implements ITextArea{
         rows: 3
     };
 
-    getDescription = () => TextAreaDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => TextAreaDescription as unknown as { [key: string]: PropDescription | null };
 }

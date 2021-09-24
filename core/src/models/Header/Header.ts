@@ -23,5 +23,5 @@ export class Header extends AbstractModel implements IHeader{
         subheader: ""
     };
 
-    getDescription = () => HeaderDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => HeaderDescription as unknown as { [key: string]: PropDescription | null };
 }

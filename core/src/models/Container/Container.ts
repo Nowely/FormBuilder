@@ -22,7 +22,7 @@ export class Container extends AbstractModel implements IContainer{
 
     };
 
-    getDescription = () => ContainerDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => ContainerDescription as unknown as { [key: string]: PropDescription | null };
 
     children: AbstractModel[] = [];
 }

@@ -114,7 +114,7 @@ export const FormBuilder = observer((props: FormBuilderProps) => {
                 <div>
                     {Object.keys(model?.getDescription() ?? {}).map(key =>
                         <div key={key}>
-                            <Form.ControlLabel>{key}</Form.ControlLabel>
+                            <Form.ControlLabel>{model?.getDescription()?.[key]?.title ?? key}</Form.ControlLabel>
                             <RInput
                                 value={_.get(model, key, "")}
                                 onChange={value => _.set(model as object, key, value)}

@@ -3,8 +3,8 @@ import {IHeader} from "./IHeader";
 
 
 export const HeaderDescription: AllPropsDescriptionOf<IHeader> = {
-    key: null,
-    "main.content": null,
-    "main.subheader": null,
+    key: {title: "Key"},
+    "main.content": {title: "Content"},
+    "main.subheader": {title: "Subhead"},
     main: null
 }

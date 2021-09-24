@@ -48,5 +48,5 @@ export class Input extends AbstractModel implements IInput {
     };
 
 
-    getDescription = () => InputDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => InputDescription as unknown as { [key: string]: PropDescription | null };
 }

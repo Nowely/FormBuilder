@@ -24,5 +24,5 @@ export class Button extends AbstractModel implements IButton {
 
     };
 
-    getDescription = () => ButtonDescription as unknown as { [key: string]: [PropDescription | null] };
+    getDescription = () => ButtonDescription as unknown as { [key: string]: PropDescription | null };
 }
